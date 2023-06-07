@@ -1,4 +1,4 @@
-package sarvar.group.model;
+package sarvar.group.controllerServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

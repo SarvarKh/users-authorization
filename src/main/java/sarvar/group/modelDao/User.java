@@ -1,4 +1,4 @@
-package sarvar.group.model;
+package sarvar.group.modelDao;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
