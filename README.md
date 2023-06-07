@@ -1,19 +1,5 @@
-# Courier Mate
-The courier registers in the system and offers his services: his own transport (bicycle, quad bike, drone, car ..), types of goods transported. The administrator confirms\rejects the Courier's Application. The client places an order for delivery and selects a Courier, rates the Couriers. The system issues an Invoice to the Client. The administrator manages users and system content.
-
-## Progress report
-
-| Tasks                  | Start Date | End Date   |
-|------------------------|------------|------------|
-| Gathering requirements | 06-June-23 | 08-June-23 |
-| Design Basic flow      | 09-June-23 | 10-June-23 |
-| Entity Design          | 11-June-23 | 12-June-23 |
-| Data Access Layer      | 13-June-23 | 14-June-23 |
-| Service Layer          | 15-June-23 | 16-June-23 |
-| Controller Layer       | 17-June-23 | 18-June-23 |
-| Polish UI              | 19-June-23 | 20-June-23 |
-| Testing                | 21-June-23 | 22-June-23 |
-| Present and Finish     | 23-June-23 | 25-June-23 |
+# Users authorization
+This is test project to implement various features of Servlets, JDBC, and JSP with PostgreSQL.
 
 ## Screenshots
 
@@ -43,8 +29,7 @@ This project includes the following features:
 - The system issues an Invoice to the Client. 
 - The administrator manages users and system content.
 
-## Testing
-- Administrator, Client, Courier 
+## Testing 
 - DAO, DTO, and all other layers
 
 ## Technologies Used
@@ -53,6 +38,9 @@ This project was built using the following technologies:
 - Java 17.0.2
 - Maven
 - Dependencies (Lombok, Javax.servlet)
+- JDBC
+- Servlet
+- PostgreSQL
 
 ## Authors
 
