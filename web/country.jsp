@@ -19,27 +19,15 @@
 <body>
 <%
     DBConnection dbConnection = new DBConnection();
-    try {
-        Result result = dbConnection.addCountry(request.getParameter("name"));
-        if (result.isSuccess()) {
-            System.out.println(result.getMessage());
-        } else {
-            System.out.println(result.getMessage());
-        }
-    } catch (ClassNotFoundException e) {
-        throw new RuntimeException(e);
-    } catch (SQLException e) {
-        throw new RuntimeException(e);
-    }
 %>
     <h1>Welcome to Country List page!</h1>
     <div class="container">
-        <form>
+        <form action="country" method="post">
             <div class="mb-3">
                 <label for="country" class="form-label">Country name</label>
-                <input type="text" class="form-control" id="country">
+                <input type="text" class="form-control" id="country" name="name" required>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Add country</button>
         </form>
 
         <table class="table table-striped">

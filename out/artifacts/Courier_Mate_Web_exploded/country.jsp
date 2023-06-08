@@ -1,4 +1,8 @@
-<%--
+<%@ page import="sarvar.group.service.DBConnection" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="sarvar.group.service.util.Result" %>
+<%@ page import="java.util.List" %>
+<%@ page import="sarvar.group.modelDao.Country" %><%--
   Created by IntelliJ IDEA.
   User: sarvarkhalimov
   Date: 08/06/23
@@ -13,35 +17,54 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 <body>
+<%
+    DBConnection dbConnection = new DBConnection();
+%>
     <h1>Welcome to Country List page!</h1>
     <div class="container">
+        <form action="country" method="post">
+            <div class="mb-3">
+                <label for="country" class="form-label">Country name</label>
+                <input type="text" class="form-control" id="country" name="name" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add country</button>
+        </form>
+
         <table class="table table-striped">
             <thead>
             <tr class="table-primary">
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Name</th>
+                <th scope="col" colspan="2">Action</th>
             </tr>
             </thead>
             <tbody class="table table-striped">
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-            </tr>
+            <%
+                List<Country> countryList = dbConnection.getCountryList();
+                for (int i = 0; i < countryList.size(); i++) {
+                    out.println(
+                            "<tr>\n" +
+                                    "<th scope=\"row\">"+(i+1)+"</th>\n" +
+                                    "<td>"+countryList.get(i).getName()+"</td>\n" +
+                                    "<td>" +
+                                    "<button type=\"button\" class=\"btn btn-outline-danger\">Danger</button>\n" +
+                                    "<button type=\"button\" class=\"btn btn-outline-warning\">Warning</button>" +
+                                    "</td>\n" +
+                                    "</tr>"
+                    );
+                }
+            %>
+<%--            <tr>--%>
+<%--                <th scope="row">2</th>--%>
+<%--                <td>Jacob</td>--%>
+<%--                <td>Thornton</td>--%>
+<%--                <td>@fat</td>--%>
+<%--            </tr>--%>
+<%--            <tr>--%>
+<%--                <th scope="row">3</th>--%>
+<%--                <td colspan="2">Larry the Bird</td>--%>
+<%--                <td>@twitter</td>--%>
+<%--            </tr>--%>
             </tbody>
         </table>
     </div>

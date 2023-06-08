@@ -16,7 +16,7 @@ public class DBConnection {
     public static Result addCountry(String name) throws ClassNotFoundException, SQLException {
         Class.forName("org.postgresql.Driver");
         Connection connection = DriverManager.getConnection(url, dbUserName, dbPassword);
-        String query = "{call addCountry(?,?,?)}";
+        String query = "{call add_country(?,?,?)}";
 
         CallableStatement statement = connection.prepareCall(query);
         statement.setString(1, name);
