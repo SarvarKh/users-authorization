@@ -1,14 +1,51 @@
 package sarvar.group.service;
 
+import sarvar.group.modelDao.Country;
 import sarvar.group.modelDao.User;
 import sarvar.group.service.util.Result;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBConnection {
     private static String url = "jdbc:postgresql://localhost:5432/myUserDB";
     private static String dbUserName = "postgres";
     private static String dbPassword = null;
+
+    public static Result addCountry(String name) throws ClassNotFoundException, SQLException {
+        Class.forName("org.postgresql.Driver");
+        Connection connection = DriverManager.getConnection(url, dbUserName, dbPassword);
+        String query = "{call addCountry(?,?,?)}";
+
+        CallableStatement statement = connection.prepareCall(query);
+        statement.setString(1, name);
+        statement.registerOutParameter(2, Types.VARCHAR);
+        statement.registerOutParameter(3, Types.BOOLEAN);
+        statement.executeUpdate();
+
+        String message = statement.getString(2);
+        boolean success = statement.getBoolean(3);
+
+        return new Result(message, success);
+    }
+
+    public static List<Country> getCountryList() throws ClassNotFoundException, SQLException {
+        Class.forName("org.postgresql.Driver");
+        Connection connection = DriverManager.getConnection(url, dbUserName, dbPassword);
+
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("select * from country");
+        List<Country> countryList = new ArrayList<>();
+        while (resultSet.next()) {
+            Country country = new Country(
+                    resultSet.getInt("id"),
+                    resultSet.getString("name")
+            );
+            countryList.add(country);
+        }
+        return countryList;
+    }
 
     public static Result register(User user) throws ClassNotFoundException, SQLException {
         Class.forName("org.postgresql.Driver");
