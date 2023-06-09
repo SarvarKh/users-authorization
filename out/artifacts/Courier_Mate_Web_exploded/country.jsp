@@ -20,14 +20,43 @@
 <%
     DBConnection dbConnection = new DBConnection();
 %>
-    <h1>Welcome to Country List page!</h1>
     <div class="container">
-        <form action="country" method="post">
+        <h1>Welcome to Address page</h1>
+        <form action="country" method="post" class="border border-primary-subtle p-2 mb-6">
+            <h3>Country form</h3>
             <div class="mb-3">
                 <label for="country" class="form-label">Country name</label>
                 <input type="text" class="form-control" id="country" name="name" required>
             </div>
             <button type="submit" class="btn btn-primary">Add country</button>
+        </form>
+
+
+        <form action="region" method="post" class="border border-primary-subtle p-2 mb-6">
+            <h3>Region form</h3>
+            <label class="form-label">Select country</label>
+            <select name="country_id" class="form-select" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                <%
+                    List<Country> countryList = dbConnection.getCountryList();
+                    for (int i = 0; i < countryList.size(); i++) {
+                        out.println(
+                                "<option value=\"" +
+                                        +countryList.get(i).getId()+
+                                        "\">" +
+                                        countryList.get(i).getName()+
+                                        "</option>"
+                        );
+                    }
+                %>
+            </select>
+
+            <div class="mb-3">
+                <label for="region" class="form-label">Region name</label>
+                <input type="text" class="form-control" id="region" name="region">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add region</button>
         </form>
 
         <table class="table table-striped">
@@ -40,31 +69,21 @@
             </thead>
             <tbody class="table table-striped">
             <%
-                List<Country> countryList = dbConnection.getCountryList();
                 for (int i = 0; i < countryList.size(); i++) {
+                    Country country = countryList.get(i);
+                    
                     out.println(
                             "<tr>\n" +
                                     "<th scope=\"row\">"+(i+1)+"</th>\n" +
-                                    "<td>"+countryList.get(i).getName()+"</td>\n" +
+                                    "<td>"+country.getName()+"</td>\n" +
                                     "<td>" +
-                                    "<button type=\"button\" class=\"btn btn-outline-danger\">Danger</button>\n" +
-                                    "<button type=\"button\" class=\"btn btn-outline-warning\">Warning</button>" +
+                                    "<button type=\"button\" class=\"btn btn-outline-danger\">Delete</button>\n" +
+                                    "<button type=\"button\" class=\"btn btn-outline-warning\">Edit</button>" +
                                     "</td>\n" +
                                     "</tr>"
                     );
                 }
             %>
-<%--            <tr>--%>
-<%--                <th scope="row">2</th>--%>
-<%--                <td>Jacob</td>--%>
-<%--                <td>Thornton</td>--%>
-<%--                <td>@fat</td>--%>
-<%--            </tr>--%>
-<%--            <tr>--%>
-<%--                <th scope="row">3</th>--%>
-<%--                <td colspan="2">Larry the Bird</td>--%>
-<%--                <td>@twitter</td>--%>
-<%--            </tr>--%>
             </tbody>
         </table>
     </div>
