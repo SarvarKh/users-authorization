@@ -6,7 +6,6 @@ This is test project to implement various features of Servlets, JDBC, and JSP wi
 <div style="display: flex; flex-wrap: wrap">
 <div align="center">
   <img src="image/01_console.png?raw=true" width="90%" height="auto"/>
-  <img src="image/02_console.png?raw=true" width="90%" height="auto"/>
 </div>
 </div>
 
@@ -23,14 +22,8 @@ To get started with this project, follow these steps:
 ## Features
 This project includes the following features:
 
-- The courier registers in the system and offers his services: his own transport (bicycle, quad bike, drone, car ..), types of goods transported.
-- The administrator confirms\rejects the Courier's Application. 
-- The client places an order for delivery and selects a Courier, rates the Couriers. 
-- The system issues an Invoice to the Client. 
-- The administrator manages users and system content.
-
-## Testing 
-- DAO, DTO, and all other layers
+- user registration and authorization;
+- country, region, district registration and view;
 
 ## Technologies Used
 This project was built using the following technologies:
@@ -41,6 +34,7 @@ This project was built using the following technologies:
 - JDBC
 - Servlet
 - PostgreSQL
+- pgAdmin 4
 
 ## Authors
 
