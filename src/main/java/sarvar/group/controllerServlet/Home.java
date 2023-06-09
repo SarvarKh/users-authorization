@@ -26,6 +26,9 @@ public class Home extends HttpServlet {
                 "      <br>\n" +
                 "      <br>\n" +
                 "      <a href=\"http://localhost:8080/register\">Register</a>\n" +
+                "      <br>\n" +
+                "      <br>\n" +
+                "      <a href=\"http://localhost:8080/country\">Country</a>\n" +
                 "  </div>\n" +
                 "</body>\n" +
                 "</html>");
